@@ -40,7 +40,7 @@ const commands = [
 function Terminal() {
     const [isCommandLoading, setCommandLoading] = useState(false);
     const [histories, setHistories] = useState<ReactNode[]>([
-        <WelcomeMessage />
+        <WelcomeMessage key="welcome" />
     ]);
 
     const resolveCommand = useCallback((commandInput: string) => {
@@ -56,8 +56,8 @@ function Terminal() {
             if (!commandProperty) {
                 setHistories([
                     ...histories,
-                    <CommandHistory command={command} />,
-                    <CommandNotFound />
+                    <CommandHistory key="history" command={command} />,
+                    <CommandNotFound key="notfound" />
                 ]);
                 setCommandLoading(false);
                 return;
@@ -67,14 +67,14 @@ function Terminal() {
                 ?
                 setHistories([
                     ...histories,
-                    <CommandHistory command={command} />,
+                    <CommandHistory key="history" command={command} />,
                     commandProperty.component()
                 ])
                 : setHistories([]);
 
             setCommandLoading(false);
         }, 1500);
-    }, [histories]);
+    }, [histories, resolveCommand]);
 
     return (
         <label htmlFor="terminalInput">
@@ -98,7 +98,7 @@ function Terminal() {
 function WelcomeMessage() {
     return (
         <div className="flex flex-col gap-2">
-            <p>Welcome to the Dhanu-Undiksha Terminal! Type 'help' for a list of commands.</p>
+            <p>Welcome to the Dhanu-Undiksha Terminal! Type &apos;help&apos; for a list of commands.</p>
 
             <StudentInformationTable />
             <SocialMediaInformationTable />
@@ -264,7 +264,7 @@ function InputPrompt({
     const clearInput = useCallback(() => {
         setCommand('');
         return true;
-    }, [inputRef]);
+    }, []);
 
     useEffect(() => {
         if (!inputRef || !inputRef.current) return;
