@@ -159,7 +159,7 @@ function CommandHelpTable() {
                                 return (
                                     <tr key={command.name}>
                                         <td>{command.name}</td>
-                                        <td className="text-slate-400">.</td>
+                                        <td className="text-slate-400 !text-xs">•</td>
                                         <td className="text-slate-300">{command.description}</td>
                                     </tr>
                                 );
