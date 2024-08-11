@@ -152,14 +152,14 @@ function CommandHelpTable() {
             <div>💁</div>
             <div className="flex-1">
                 <span className="font-semibold">Bantuan</span>
-                <table className="[&>tr>td]:pr-4 ml-2 mt-2">
+                <table className="[&>tbody>tr>td]:pr-1 [&>tbody>tr>td]:align-top ml-2 mt-2">
                     <tbody>
                         {
                             commands.map((command) => {
                                 return (
                                     <tr key={command.name}>
                                         <td>{command.name}</td>
-                                        <td>.</td>
+                                        <td className="text-slate-400">.</td>
                                         <td className="text-slate-300">{command.description}</td>
                                     </tr>
                                 );
