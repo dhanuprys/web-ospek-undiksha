@@ -9,31 +9,43 @@ const commands = [
         name: 'help',
         description: 'Menampilkan bantuan',
         component: CommandHelpTable,
+        delay: null
     },
     {
         name: 'clear',
         description: 'Menghapus histori',
-        component: null
+        component: null,
+        delay: null
     },
     {
         name: 'mulai',
         description: 'Menampilkan header pada awal aplikasi',
-        component: WelcomeMessage
+        component: WelcomeMessage,
+        delay: null
     },
     {
         name: 'saya',
         description: 'Menampilkan informasi dasar tentang diri saya',
-        component: StudentTentangSaya
+        component: StudentTentangSaya,
+        delay: null
+    },
+    {
+        name: 'sosial',
+        description: 'Menampilkan sosial media',
+        component: SocialMediaInformationTable,
+        delay: null
     },
     {
         name: 'harapan',
         description: 'Menampilkan harapan saya',
-        component: StudentHarapan
+        component: StudentHarapan,
+        delay: null
     },
     {
         name: 'prestasi',
         description: 'Menampilkan prestasi saya',
-        component: StudentPrestasi
+        component: StudentPrestasi,
+        delay: null
     }
 ];
 
@@ -50,8 +62,7 @@ function Terminal() {
     const enterCommand = useCallback((command: string) => {
         setCommandLoading(true);
 
-        setTimeout(() => {
-            const commandProperty = resolveCommand(command);
+        const commandProperty = resolveCommand(command);
 
             if (!commandProperty) {
                 setHistories([
@@ -63,6 +74,7 @@ function Terminal() {
                 return;
             }
 
+        setTimeout(() => {
             commandProperty.component
                 ?
                 setHistories([
@@ -73,8 +85,15 @@ function Terminal() {
                 : setHistories([]);
 
             setCommandLoading(false);
-        }, 1500);
+        }, commandProperty.delay || 1500);
     }, [histories, resolveCommand]);
+
+    useEffect(() => {
+        window.scroll({
+            left: 0,
+            top: 999999999
+        });
+    }, [histories]);
 
     return (
         <label htmlFor="terminalInput">
@@ -98,7 +117,7 @@ function Terminal() {
 function WelcomeMessage() {
     return (
         <div className="flex flex-col gap-2">
-            <p>Welcome to the Dhanu-Undiksha Terminal! Type &apos;help&apos; for a list of commands.</p>
+            <p>🚀 Welcome to the Dhanu-Undiksha Terminal! Type &apos;help&apos; for a list of commands.</p>
 
             <StudentInformationTable />
             <SocialMediaInformationTable />
@@ -129,21 +148,26 @@ function CommandNotFound() {
 
 function CommandHelpTable() {
     return (
-        <div>
-            <span className="font-semibold">Bantuan</span>
-            <table className="[&>tr>td]:pr-2">
-                {
-                    commands.map((command) => {
-                        return (
-                            <tr key={command.name}>
-                                <td>{command.name}</td>
-                                <td>.</td>
-                                <td className="text-slate-300">{command.description}</td>
-                            </tr>
-                        );
-                    })
-                }
-            </table>
+        <div className="flex gap-2">
+            <div>💁</div>
+            <div className="flex-1">
+                <span className="font-semibold">Bantuan</span>
+                <table className="[&>tr>td]:pr-4 ml-2 mt-2">
+                    <tbody>
+                        {
+                            commands.map((command) => {
+                                return (
+                                    <tr key={command.name}>
+                                        <td>{command.name}</td>
+                                        <td>.</td>
+                                        <td className="text-slate-300">{command.description}</td>
+                                    </tr>
+                                );
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
@@ -152,7 +176,7 @@ function StudentTentangSaya() {
     return (
         <div>
             <p>
-                
+
             </p>
         </div>
     );
@@ -196,7 +220,7 @@ function StudentPrestasi() {
 function StudentInformationTable() {
     return (
         <div>
-            <hr className="w-full bg-slate-100" />
+            <hr className="w-full border border-dashed border-slate-400" />
             <div className="flex gap-4 items-center my-6 px-4">
                 <div className="w-[70px] h-[70px]">
                     <Image
@@ -209,44 +233,51 @@ function StudentInformationTable() {
                 <div>
                     <span className="font-semibold">Informasi Mahasiswa</span>
                     <table>
-                        <tr>
-                            <td>Nama</td>
-                            <td>: Gede Dhanu Purnayasa</td>
-                        </tr>
-                        <tr>
-                            <td>NIM</td>
-                            <td>: 2415091092</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Nama</td>
+                                <td>: Gede Dhanu Purnayasa</td>
+                            </tr>
+                            <tr>
+                                <td>NIM</td>
+                                <td>: 2415091092</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
-            <hr className="w-full bg-slate-100" />
+            <hr className="w-full border border-dashed border-slate-400" />
         </div>
     );
 }
 
 function SocialMediaInformationTable() {
     return (
-        <div>
-            <span className="font-semibold">Sosial Media</span>
-            <table>
-                <tr>
-                    <td>Instagram</td>
-                    <td>
-                        : <Link href="https://instagram.com/dhanuprys" className="underline">dhanuprys</Link>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Github</td>
-                    <td>
-                        : <Link href="https://github.com/dhanuprys" className="underline">dhanuprys</Link>
-                    </td>
-                </tr>
-                <tr>
-                    <td>LinkedIn</td>
-                    <td>: Gede Dhanu Purnayasa</td>
-                </tr>
-            </table>
+        <div className="flex gap-2">
+            <div>❤️</div>
+            <div>
+                <span className="font-semibold">Sosial Media</span>
+                <table className="ml-2 mt-2">
+                    <tbody>
+                        <tr>
+                            <td>Instagram</td>
+                            <td>
+                                : <Link href="https://instagram.com/dhanuprys" className="underline">dhanuprys</Link>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Github</td>
+                            <td>
+                                : <Link href="https://github.com/dhanuprys" className="underline">dhanuprys</Link>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn</td>
+                            <td>: Gede Dhanu Purnayasa</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
@@ -271,9 +302,9 @@ function InputPrompt({
 
         inputRef.current.focus();
 
-        const refocusTimer = setInterval(() => inputRef.current?.focus(), 3000);
+        // const refocusTimer = setInterval(() => inputRef.current?.focus(), 3000);
 
-        return () => clearInterval(refocusTimer);
+        // return () => clearInterval(refocusTimer);
     }, [inputRef]);
 
     return (
