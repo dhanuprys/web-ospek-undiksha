@@ -78,7 +78,7 @@ function Terminal() {
 
     return (
         <label htmlFor="terminalInput">
-            <div className="min-h-screen bg-black text-white p-1 md:p-2">
+            <div className="min-h-screen bg-black text-white p-1 md:p-2 text-xs md:text-sm">
                 <div className="flex flex-col gap-2">
                     {
                         histories.map((history, i) => {
@@ -110,7 +110,7 @@ function WelcomeMessage() {
 function CommandHistory({ command }: { command: string }) {
     return (
         <div className="flex items-center gap-x-2">
-            <span className="text-sm">
+            <span>
                 <span className="text-green-600">dhanu@undiksha</span>:<span className="text-blue-600">~</span>$
             </span>
             <span>{command}</span>
@@ -278,7 +278,7 @@ function InputPrompt({
 
     return (
         <div className={`flex items-center gap-x-2 ${!enabled ? '[&>*]:!text-slate-900 animate-pulse' : ''}`}>
-            <span className="text-sm">
+            <span>
                 <span className="text-green-600">dhanu@undiksha</span>:<span className="text-blue-600">~</span>$
             </span>
             <input
