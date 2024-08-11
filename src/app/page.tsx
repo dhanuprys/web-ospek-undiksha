@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Terminal from './Terminal';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-     
+    <main className="min-h-screen max-h-screen relative overflow-y-auto">
+      <Terminal />
     </main>
   );
 }
