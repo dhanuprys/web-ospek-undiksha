@@ -30,6 +30,18 @@ const commands = [
         delay: null
     },
     {
+        name: 'foto',
+        description: 'Menampilkan foto diri saya',
+        component: StudentPhoto,
+        delay: null
+    },
+    {
+        name: 'pendidikan',
+        description: 'Menampilkan riwayat pendidikan',
+        component: StudentEducation,
+        delay: null
+    },
+    {
         name: 'sosial',
         description: 'Menampilkan sosial media',
         component: SocialMediaInformationTable,
@@ -176,8 +188,24 @@ function StudentTentangSaya() {
     return (
         <div>
             <p>
-
+                Saya adalah seseorang yang sangat gemar dengan dunia IT sejak sedari kelas 1 smp.
+                Dengan motivasi yang tinggi membuat diri saya dapat menjadi seseorang yang sangat
+                antusias dengan dunia IT.
             </p>
+        </div>
+    );
+}
+
+function StudentPhoto() {
+    return (
+        <div className="my-2">
+            <Image
+                className="w-full h-48 rounded-lg object-contain"
+                src="/me.jpg"
+                width={1000}
+                height={500}
+                alt="Foto Dhanu Undiksha"
+            />
         </div>
     );
 }
@@ -199,18 +227,40 @@ function StudentHarapan() {
     );
 }
 
+function StudentEducation() {
+    return (
+        <div>
+            <h2 className="font-bold mb-2">Riwayat Pendidikan</h2>
+            <ul className="list-disc pl-6">
+                <li>
+                    <span className="font-bold">SD Negeri 2 Penuktukan, 2012 - 2018</span>
+                    <p>Sekolah Dasar</p>
+                </li>
+                <li>
+                    <span className="font-bold">SMP Negeri 2 Tejakula, 2018 - 2021</span>
+                    <p>Sekolah Menengah Pertama</p>
+                </li>
+                <li>
+                    <span className="font-bold">SMK Negeri 3 Singaraja, 2021 - 2024</span>
+                    <p>Sekolah Menengah Atas</p>
+                </li>
+                <li>
+                    <span className="font-bold">Universitas Pendidikan Ganesha, 2024 - Sekarang</span>
+                    <p>Perguruan Tinggi</p>
+                </li>
+            </ul>
+        </div>
+    );
+}
+
 function StudentPrestasi() {
     return (
         <div>
+            <h2 className="font-bold">Olimpiade Jaringan Mikrotik tahun 2023</h2>
             <p>
-                Sebagai calon mahasiswa yang penuh semangat, saya sangat berharap dapat menjadi bagian
-                dari Universitas Pendidikan Ganesha, sebuah institusi yang terkenal dengan dedikasi
-                tinggi dalam mencetak generasi unggul. Saya memilih Universitas Pendidikan Ganesha
-                karena saya yakin bahwa program studi Sistem Informasi di universitas ini adalah tempat
-                yang tepat untuk saya mengembangkan potensi dan minat saya dalam bidang teknologi dan
-                informasi. Dengan bimbingan dari para akademisi yang kompeten dan lingkungan
-                pembelajaran yang inspiratif, saya yakin Universitas Pendidikan Ganesha akan menjadi
-                fondasi yang kuat bagi perjalanan akademis dan karier saya di masa depan.
+                Pada tahun 2023 saya pernah mengikuti ajang Olimpiade Jaringan Mikrotik (OJM) yang
+                diselenggarakan di Jogjakarta. Disana saya mendapatkan peringkat 6 besar dari 400
+                peserta
             </p>
         </div>
     );
@@ -241,6 +291,14 @@ function StudentInformationTable() {
                             <tr>
                                 <td>NIM</td>
                                 <td>: 2415091092</td>
+                            </tr>
+                            <tr>
+                                <td>Kelompok</td>
+                                <td>: Junction</td>
+                            </tr>
+                            <tr>
+                                <td>No. Urut</td>
+                                <td>: 23</td>
                             </tr>
                         </tbody>
                     </table>
